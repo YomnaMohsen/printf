@@ -9,7 +9,8 @@
 /* strctures */
 /**
 *struct buffer - struct that defines buffer
-*@s: pointer to string
+*@buf: pointer to string
+*@start : pointer to string
 *@len: length of string stored in buffer
 */
 typedef struct buffer

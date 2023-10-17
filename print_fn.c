@@ -3,22 +3,21 @@
 
 void print_null(buf_t *buf);
 /**
-*@print_null - print null
+*print_null - print null
 *@buf : pointer to struct
-*@Return : Nothing
+*Return : Nothing
 */
 
 void print_null(buf_t *buf)
 {
 	char *s = "(null)";
+
 	while (*s)
 	{
 		*(buf->buf) = *s;
 		s++;
 		(buf->buf)++;
 	}
-		
-	
 }
 /**
 *print_s - print string

@@ -40,7 +40,6 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	buf->start = buf->buf;
 	count = frmt_specifier(buf, format, ap);
-	
 	buf->len = (count + 1);
 	buf->buf[count] = '\0';
 	/*printf("%d", buf->s[11]);*/

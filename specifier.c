@@ -23,14 +23,12 @@ int frmt_specifier(buf_t *buf, const char *format, va_list ap)
 	{
 		if (format[i] != '%')
 		{
-		/*	printf("in first %d\n",i);*/
 			*(buf->buf) = format[i];
 			(buf->buf)++;
 			count++;
 		}
 		else
 		{
-			
 			while (spec_arr[j].s)
 			{
 				if (format[i+1] == spec_arr[j].s)
@@ -38,15 +36,11 @@ int frmt_specifier(buf_t *buf, const char *format, va_list ap)
 					count += spec_arr[j].f(buf, ap);
 					i++;
 					break;
-				
 				}
 				j++;
 			}
-			
-			
 			if (spec_arr[j].s == '\0')
 			{
-			/*	printf ("in if\n"); */
 				*(buf->buf) = '%';
 				(buf->buf)++;
 				count++;
@@ -63,6 +57,5 @@ int frmt_specifier(buf_t *buf, const char *format, va_list ap)
 		j = 0;
 		i++;
 	}
-/*	printf("%d", count);*/
 	return (count);
 }
