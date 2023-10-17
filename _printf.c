@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 
 	char *p, *start;
 
-	params_t = PARAMS_INIT;
+	params_t params = PARAMS_INIT;
 
 	va_start(ap, format);
 
@@ -26,6 +26,7 @@ int _printf(const char *format, ...)
 	for (p = (char *)format; *p; p++)
 	{
 		init_params(&params, ap);
+
 		if (*p != '%')
 		{
 			sum += _putchar(*p);
@@ -38,7 +39,7 @@ int _printf(const char *format, ...)
 			p++; /* next char */
 		}
 		p = get_width(p, &params, ap);
-		p = get_precision(p, &params, ap);
+		p = get_precison(p, &params, ap);
 		if (get_modifier(p, &params))
 			p++;
 		if (!get_specifier(p))

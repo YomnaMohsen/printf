@@ -16,7 +16,7 @@ char *convert(long int num, int base, int flags, params_t *params)
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long n = sum;
+	unsigned long n = num;
 	(void)params;
 
 	if (!(flags & CONVERT_UNSIGNED) && num < 0)
@@ -32,10 +32,12 @@ char *convert(long int num, int base, int flags, params_t *params)
 	do 	{
 		*--ptr = array[n % base];
 		n /= base;
-	} while (n != 0)
+	} while (n != 0);
 
 	if (sign)
+
 		*--ptr = sign;
+
 	return (ptr);
 }
 

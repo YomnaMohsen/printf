@@ -13,7 +13,7 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
 		{"c", print_char},
 		{"d", print_int},
 		{"i", print_int},
-		{"s", print_sttring},
+		{"s", print_string},
 		{"%", print_percent},
 		{"b", print_binary},
 		{"o", print_octal},
@@ -29,7 +29,7 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
 
 	int i = 0;
 
-	while (specifiers[i].specifier)
+	while (specifier[i].specifier)
 	{
 		if (*s == specifier[i].specifier[0])
 		{
@@ -50,7 +50,7 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
 
 int get_print_func(char *s, va_list ap, params_t *params)
 {
-	int (*f)(va_list, params_t *) = get_specifier(S);
+	int (*f)(va_list, params_t *) = get_specifier(s);
 
 	if (f)
 		return (f(ap, params));
