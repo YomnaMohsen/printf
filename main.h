@@ -28,8 +28,7 @@ typedef struct spec
 {
 	unsigned char s;
 	int (*f)(va_list, buf_t *,
-		unsigned char, int, int, unsigned char)
-;
+		unsigned char, int, int, unsigned char);
 } spec_t;
 
 
