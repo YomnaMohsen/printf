@@ -2,60 +2,28 @@
 #include <stdio.h>
 
 /**
-* frmt_specifier - format specifier arg in printf
-*@buf: pointer to struct
-*@format: parameter to string
-* @ap: list of args
-* Return:  int
+* frmt_specifier - matches specifier arg in printf
+* @spec: pointer to specifier
+* Return: if function found return pointer to it otherwise null
 */
 
-int frmt_specifier(buf_t *buf, const char *format, va_list ap)
+int (*frmt_specifier(const char *spec))(va_list, buf_t *,
+	unsigned char, int, int, unsigned char)
 {
-	int count = 0, i = 0, j = 0;
+	int j;
 
 	spec_t spec_arr[] = {
 		{'s', print_s},
 		{'c', print_c},
 		{'%', print_perc},
-		{'\0', NULL}
+		{0, NULL}
 	};
-	while (format[i])
+	for (j = 0; spec_arr[j].f; j++)
 	{
-		if (format[i] != '%')
+		if (spec_arr[j].s == *spec)
 		{
-			*(buf->buf) = format[i];
-			(buf->buf)++;
-			count++;
+			return (spec_arr[j].f);
 		}
-		else
-		{
-			while (spec_arr[j].s)
-			{
-				if (format[i+1] == spec_arr[j].s)
-				{
-					count += spec_arr[j].f(buf, ap);
-					i++;
-					break;
-				}
-				j++;
-			}
-			if (spec_arr[j].s == '\0')
-			{
-				*(buf->buf) = '%';
-				(buf->buf)++;
-				count++;
-				if (format[i+1])
-				{
-					(*buf->buf) = format[i+1];
-					(buf->buf)++;
-					count++;
-				}
-				else
-					break;
-			}
-		}
-		j = 0;
-		i++;
 	}
-	return (count);
+	return (NULL);
 }

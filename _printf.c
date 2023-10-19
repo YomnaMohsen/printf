@@ -1,11 +1,52 @@
 #include "main.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <unistd.h>
 
+int run_handlers(const char *format, va_list args, buf_t *buf);
 void printbuff_free(buf_t *buf, va_list args);
+int _printf(const char *format, ...);
+/**
+* run_handlers - process string read from _printf
+* @buf: pointer to struct
+* @args: list of args
+* @format: string format
+* Return: int
+*/
+
+int run_handlers(const char *format, va_list args, buf_t *buf)
+{
+	int i, count = 0, wid = 0, prec = 0;
+	/*char index = 0;*/
+	unsigned char flags = 0, len = 0;
+	int (*f)(va_list, buf_t *, unsigned char, int, int, unsigned char);
+
+	for (i = 0; format[i]; i++)
+	{
+		len = 0;
+		if (format[i] == '%')
+		{
+			f = frmt_specifier(format + i + 1);
+			if (f != NULL)
+			{
+				i++;
+				count += f(args, buf, flags, wid, prec, len);
+				continue;
+			}
+			else if (*(format + i + 1) == '\0')
+			{
+				count = -1;
+				break;
+			}
+			
+		}
+		count += cpy_buf(buf, (format + i), 1);	
+	}
+	return (count);
+}
 
 /**
-* printbuff_free - print buffer then free it
+* buff_free -  free buf
 * @buf: pointer to struct
 * @args: list of args
 * Return: Nothing
@@ -13,8 +54,8 @@ void printbuff_free(buf_t *buf, va_list args);
 
 void printbuff_free(buf_t *buf, va_list args)
 {
-	va_end(args);
 	write(1, buf->start, buf->len);
+	va_end(args);
 	free(buf->start);
 	free(buf);
 }
@@ -30,19 +71,13 @@ int _printf(const char *format, ...)
 	int count;
 	buf_t *buf;
 
-	if (format == NULL || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
+	if (format == NULL)
 		return (-1);
 	buf = initbuffer();
 	if (buf == NULL)
 		return (-1);
 	va_start(ap, format);
-	buf->start = buf->buf;
-	count = frmt_specifier(buf, format, ap);
-	buf->len = (count + 1);
-	buf->buf[count] = '\0';
-	/*printf("%d", buf->s[11]);*/
+	count = run_handlers(format, ap, buf);
 	printbuff_free(buf, ap);
 	return (count);
 }

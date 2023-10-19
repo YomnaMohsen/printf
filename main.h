@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-# define NULL_STRING "(null"
 
 /* strctures */
 /**
@@ -27,17 +26,23 @@ typedef struct buffer
 */
 typedef struct spec
 {
-	char s;
-	int (*f)(buf_t *, va_list);
+	unsigned char s;
+	int (*f)(va_list, buf_t *,
+		unsigned char, int, int, unsigned char)
+;
 } spec_t;
 /*functions*/
 int _printf(const char *format, ...);
 buf_t *initbuffer();
-int frmt_specifier(buf_t *buf, const char *format, va_list ap);
-int print_s(buf_t *buf, va_list ap);
-int print_c(buf_t *buf,  va_list ap);
-int print_perc(buf_t *buf,  va_list ap);
+int print_s(va_list ap, buf_t *buf, unsigned char flag,
+	int width, int prec, unsigned char len);
+int print_c(va_list ap, buf_t *buf, unsigned char flag,
+        int width, int prec, unsigned char len);
+int print_perc(va_list ap, buf_t *buf, unsigned char flag,
+        int width, int prec, unsigned char len);
 void printbuff_free(buf_t *buf, va_list args);
-
-
+int run_handlers(const char *format, va_list arg, buf_t *buf);
+int cpy_buf(buf_t *buf, const char *s, int n);
+int (*frmt_specifier (const char *f))(va_list, buf_t *,
+	unsigned char, int, int, unsigned char);
 #endif
