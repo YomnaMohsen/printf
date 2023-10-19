@@ -2,17 +2,17 @@
 
 
 /**
-* frmt_specifier - matches conversion specifier with specifier
+*frmt_specifier - matches conversion specifier with specifier
 *                  conversion fn
 *
-* @spec: pointer to conversion specifier
+*@spec: pointer to conversion specifier
 *
-* Return: if function found return pointer to it
+*Return: if function found return pointer to it
 *          otherwise null
 */
 
 int (*frmt_specifier(const char *spec))(va_list, buf_t *,
-      unsigned char, int, int, unsigned char)
+	unsigned char, int, int, unsigned char)
 {
 	int j;
 
