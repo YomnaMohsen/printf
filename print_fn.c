@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <stddef.h>
 
 /**
 *print_s - print string
@@ -25,8 +26,8 @@ int print_s(va_list ap, buf_t *buf, unsigned char flag,
 
 
 	s1 = va_arg(ap, char *);
-	if (!s1)
-		count += cpy_buf(buf, nil, 6);
+	if (s1 == NULL)
+		return (cpy_buf(buf, nil, 6));
 	while (*s1)
 	{
 		count += cpy_buf(buf, s1, 1);
