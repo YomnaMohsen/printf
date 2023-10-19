@@ -45,7 +45,7 @@ int print_s(va_list ap, buf_t *buf, unsigned char flag,
 *Return: int
 */
 
-int print_c(va_list ap, buf_t *buf,unsigned char flag,
+int print_c(va_list ap, buf_t *buf, unsigned char flag,
 	int width, int prec, unsigned char len)
 {
 	char s1;

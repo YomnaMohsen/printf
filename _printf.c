@@ -38,15 +38,14 @@ int run_handlers(const char *format, va_list args, buf_t *buf)
 				count = -1;
 				break;
 			}
-			
 		}
-		count += cpy_buf(buf, (format + i), 1);	
+		count += cpy_buf(buf, (format + i), 1);
 	}
 	return (count);
 }
 
 /**
-* buff_free -  free buf
+* printbuff_free -  free buf
 * @buf: pointer to struct
 * @args: list of args
 * Return: Nothing

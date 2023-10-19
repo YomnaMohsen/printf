@@ -15,7 +15,7 @@ int cpy_buf(buf_t *buf, const char *s, int n)
 
 	while (index < n)
 	{
-		*(buf->buf) = *(s + index);	
+		*(buf->buf) = *(s + index);
 		(buf->len)++;
 		index++;
 		(buf->buf)++;

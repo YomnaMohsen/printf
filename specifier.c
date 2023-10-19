@@ -2,8 +2,9 @@
 #include <stdio.h>
 
 /**
-* frmt_specifier - matches specifier arg in printf
-* @spec: pointer to specifier
+* frmt_specifier - matches conversion specifier with conv fn
+* @spec: pointer to conversion specifier
+*
 * Return: if function found return pointer to it otherwise null
 */
 

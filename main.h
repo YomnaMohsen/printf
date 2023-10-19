@@ -31,18 +31,23 @@ typedef struct spec
 		unsigned char, int, int, unsigned char)
 ;
 } spec_t;
+
+
 /*functions*/
 int _printf(const char *format, ...);
 buf_t *initbuffer();
 int print_s(va_list ap, buf_t *buf, unsigned char flag,
 	int width, int prec, unsigned char len);
 int print_c(va_list ap, buf_t *buf, unsigned char flag,
-        int width, int prec, unsigned char len);
+	int width, int prec, unsigned char len);
 int print_perc(va_list ap, buf_t *buf, unsigned char flag,
-        int width, int prec, unsigned char len);
+	int width, int prec, unsigned char len);
 void printbuff_free(buf_t *buf, va_list args);
 int run_handlers(const char *format, va_list arg, buf_t *buf);
 int cpy_buf(buf_t *buf, const char *s, int n);
-int (*frmt_specifier (const char *f))(va_list, buf_t *,
+
+/*handling specifier function*/
+int (*frmt_specifier(const char *s))(va_list, buf_t *,
 	unsigned char, int, int, unsigned char);
+
 #endif
