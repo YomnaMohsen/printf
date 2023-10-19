@@ -20,7 +20,14 @@ int cpy_buf(buf_t *buf, const char *s, int n)
 		*(buf->buf) = *(s + index);
 		(buf->len)++;
 		index++;
-		(buf->buf)++;
+		if (buf->len == 1024)
+		{
+			write(1, buf->start, buf->len);
+			buf->buf = buf->start;
+			buf->len = 0;
+		}
+		else
+			(buf->buf)++;
 
 	}
 	return (n);
