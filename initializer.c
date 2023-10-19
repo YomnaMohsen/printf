@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int cpy_buf(buf_t *buf, const char *s, int n);
+buf_t *initbuffer(void);
 /**
 * cpy_buf - copy src memory area to buffer
 * @s: char to be copied
@@ -25,9 +27,9 @@ int cpy_buf(buf_t *buf, const char *s, int n)
 }
 /**
 * initbuffer - initialize struct buff
-* Return: pointer to struct
+* Return: pointer to struct buf_t
 */
-buf_t *initbuffer()
+buf_t *initbuffer(void)
 {
 	buf_t *t;
 
