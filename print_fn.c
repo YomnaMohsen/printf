@@ -65,10 +65,10 @@ int print_c(va_list ap, buf_t *buf)
 
 int print_perc(va_list ap, buf_t *buf)
 {
-	char s1;
+	char s1 = '%';
 	int count = 0;
+	void(ap);
 
-	s1 = va_arg(ap, int);
 	count += cpy_buf(buf, &s1, 1);
 	return (count);
 }
