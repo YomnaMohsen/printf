@@ -22,9 +22,10 @@ int cpy_buf(buf_t *buf, const char *s, int n)
 		index++;
 		if (buf->len == 1024)
 		{
-			write(1, buf->start, buf->len);
-			buf->buf = buf->start;
-			buf->len = 0;
+		/*	write(1, buf->start, buf->len);*/
+		/*	buf->buf = buf->start;*/
+		/*	buf->len = 0;*/
+			break;
 		}
 		else
 			(buf->buf)++;
