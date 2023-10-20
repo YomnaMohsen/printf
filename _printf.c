@@ -1,54 +1,82 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
+
+int run_handlers(const char *format, va_list args, buf_t *buf);
+void printbuff_free(buf_t *buf, va_list args);
+int _printf(const char *format, ...);
+/**
+* run_handlers - process string read from _printf
+* @buf: pointer to struct
+* @args: list of args
+* @format: string format
+* Return: int
+*/
+
+int run_handlers(const char *format, va_list args, buf_t *buf)
+{
+	int i, count = 0, wid = 0, prec = 0;
+	/*char index = 0;*/
+	unsigned char flags = 0, len = 0;
+	int (*f)(va_list, buf_t *, unsigned char, int, int, unsigned char);
+
+	for (i = 0; format[i]; i++)
+	{
+		len = 0;
+		if (format[i] == '%')
+		{
+			f = frmt_specifier(format + i + 1);
+			if (f != NULL)
+			{
+				i++;
+				count += f(args, buf, flags, wid, prec, len);
+				continue;
+			}
+			else if (*(format + i + 1) == '\0')
+			{
+				count = -1;
+				break;
+			}
+		}
+		count += cpy_buf(buf, (format + i), 1);
+	}
+	return (count);
+}
 
 /**
- * _printf - prints anything
- * @format: the format string
- *
- * Return: number of bytes printed
- */
+* printbuff_free -  free buf
+* @buf: pointer to struct
+* @args: list of args
+* Return: Nothing
+*/
+
+void printbuff_free(buf_t *buf, va_list args)
+{
+	write(1, buf->start, buf->len);
+	va_end(args);
+	free(buf->start);
+	free(buf);
+}
+/**
+* _printf - produces output accroding to format
+* @format: string format
+* Return:  int
+*/
 
 int _printf(const char *format, ...)
 {
-	int sum = 0;
-
 	va_list ap;
+	int count;
+	buf_t *buf;
 
-	char *p, *start;
-
-	params_t params = PARAMS_INIT;
-
+	if (format == NULL)
+		return (-1);
+	buf = initbuffer();
+	if (buf == NULL)
+		return (-1);
 	va_start(ap, format);
-
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for (p = (char *)format; *p; p++)
-	{
-		init_params(&params, ap);
-
-		if (*p != '%')
-		{
-			sum += _putchar(*p);
-			continue;
-		}
-		start = p;
-		p++;
-		while (get_flag(p, &params)) /* while char at p is flag char */
-		{
-			p++; /* next char */
-		}
-		p = get_width(p, &params, ap);
-		p = get_precison(p, &params, ap);
-		if (get_modifier(p, &params))
-			p++;
-		if (!get_specifier(p))
-			sum += print_from_to (start, p, params.l_modifier || params.h_modifier ? p - 1 : 0);
-		else 
-			sum += get_print_func(p, ap, &params);
-	}
-	_putchar(BUF_FLUSH);
-	va_end (ap);
-	return (sum);
+	count = run_handlers(format, ap, buf);
+	printbuff_free(buf, ap);
+	return (count);
 }
-
