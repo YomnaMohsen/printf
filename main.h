@@ -1,3 +1,4 @@
+
 #ifndef _PRINTF_H
 #define _PRINTF_H
 
@@ -116,6 +117,3 @@ char *get_precison(char *p, params_t *params, va_list ap);
 int _printf(const char *format, ...);
 
 #endif
-
-
-
