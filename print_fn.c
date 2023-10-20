@@ -29,8 +29,8 @@ int print_s(va_list ap, buf_t *buf)
 }
 /**
 *print_c - print char
-*@buf: pointer to struct
 *@ap: list of args
+*@buf: pointer to struct
 *Return: int
 */
 
@@ -56,7 +56,9 @@ int print_perc(va_list ap, buf_t *buf)
 	char s1 = '%';
 	int count = 0;
 
-	void(ap);
+	(void)ap;
+
 	count += cpy_buf(buf, &s1, 1);
+
 	return (count);
 }
