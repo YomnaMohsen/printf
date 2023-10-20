@@ -27,26 +27,21 @@ typedef struct buffer
 typedef struct spec
 {
 	unsigned char s;
-	int (*f)(va_list, buf_t *,
-		unsigned char, int, int, unsigned char);
+	int (*f)(va_list, buf_t *);
 } spec_t;
 
 
 /*functions*/
 int _printf(const char *format, ...);
 buf_t *initbuffer();
-int print_s(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len);
-int print_c(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len);
-int print_perc(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len);
+int print_s(va_list ap, buf_t *buf);
+int print_c(va_list ap, buf_t *buf);
+int print_perc(va_list ap, buf_t *buf);
 void printbuff_free(buf_t *buf, va_list args);
 int run_handlers(const char *format, va_list arg, buf_t *buf);
 int cpy_buf(buf_t *buf, const char *s, int n);
 
 /*handling specifier function*/
-int (*frmt_specifier(const char *s))(va_list, buf_t *,
-	unsigned char, int, int, unsigned char);
+int (*frmt_specifier(const char *s))(va_list, buf_t *);
 
 #endif

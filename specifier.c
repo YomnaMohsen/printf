@@ -11,8 +11,7 @@
 *          otherwise null
 */
 
-int (*frmt_specifier(const char *spec))(va_list, buf_t *,
-	unsigned char, int, int, unsigned char)
+int (*frmt_specifier(const char *spec))(va_list, buf_t *)
 {
 	int j;
 

@@ -13,21 +13,17 @@
 *Return: int
 */
 
-int print_s(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len)
+int print_s(va_list ap, buf_t *buf)
 {
 	int count = 0;
 	char *s1, *nil = "(null)";
 
-	(void)flag;
-	(void)width;
-	(void)prec;
-	(void)len;
-
-
 	s1 = va_arg(ap, char *);
 	if (s1 == NULL)
-		return (cpy_buf(buf, nil, 6));
+	{
+		count += (cpy_buf(buf, nil, 6));
+		return (count);
+	}
 	while (*s1)
 	{
 		count += cpy_buf(buf, s1, 1);
@@ -46,16 +42,11 @@ int print_s(va_list ap, buf_t *buf, unsigned char flag,
 *Return: int
 */
 
-int print_c(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len)
+int print_c(va_list ap, buf_t *buf)
 {
 	char s1;
-	unsigned int count = 0;
+	int count = 0;
 
-	(void)flag;
-	(void)width;
-	(void)prec;
-	(void)len;
 	s1 = va_arg(ap, int);
 	count += cpy_buf(buf, &s1, 1);
 	return (count);
@@ -72,20 +63,13 @@ int print_c(va_list ap, buf_t *buf, unsigned char flag,
 *Return: int
 */
 
-int print_perc(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len)
+int print_perc(va_list ap, buf_t *buf)
 {
-	char s1 = '%';
-	unsigned int count = 0;
+	char s1;
+	int count = 0;
 
-	(void)flag;
-	(void)width;
-	(void)prec;
-	(void)len;
-	(void)ap;
-
+	s1 = va_arg(ap, int);
 	count += cpy_buf(buf, &s1, 1);
-
 	return (count);
 }
 

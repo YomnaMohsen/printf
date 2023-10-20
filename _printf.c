@@ -16,24 +16,21 @@ int _printf(const char *format, ...);
 
 int run_handlers(const char *format, va_list args, buf_t *buf)
 {
-	int i, count = 0, wid = 0, prec = 0;
-	/*char index = 0;*/
-	unsigned char flags = 0, len = 0;
-	int (*f)(va_list, buf_t *, unsigned char, int, int, unsigned char);
+	int i, count = 0;
+	int (*f)(va_list, buf_t *);
 
-	for (i = 0; format[i]; i++)
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		len = 0;
 		if (format[i] == '%')
 		{
 			f = frmt_specifier(format + i + 1);
 			if (f != NULL)
 			{
 				i++;
-				count += f(args, buf, flags, wid, prec, len);
+				count += f(args, buf);
 				continue;
 			}
-			else if (*(format + i + 1) == '\0')
+			else if (format[i + 1] == '\0')
 			{
 				count = -1;
 				break;

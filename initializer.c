@@ -17,15 +17,14 @@ int cpy_buf(buf_t *buf, const char *s, int n)
 
 	while (index < n)
 	{
-		*(buf->buf) = *(s + index);
+		*(buf->buf) = s[index];
 		(buf->len)++;
 		index++;
 		if (buf->len == 1024)
 		{
-		/*	write(1, buf->start, buf->len);*/
-		/*	buf->buf = buf->start;*/
-		/*	buf->len = 0;*/
-			break;
+			write(1, buf->start, buf->len);
+			buf->buf = buf->start;
+			buf->len = 0;
 		}
 		else
 			(buf->buf)++;
