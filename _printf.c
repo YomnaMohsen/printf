@@ -21,7 +21,6 @@ int run_handlers(const char *format, va_list args, buf_t *buf)
 
 	for (i = 0; format[i]; i++)
 	{
-		
 		if (format[i] == '%')
 		{
 			f = frmt_specifier(format + i + 1);
