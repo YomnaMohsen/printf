@@ -5,24 +5,14 @@
 /**
 *print_s - print string
 *@buf: pointer to struct
-*@flag: flag modifier
-*@width: width modifier
-*@prec: precision modifier
 *@ap: list of args
-*@len: length modifier
 *Return: int
 */
 
-int print_s(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len)
+int print_s(va_list ap, buf_t *buf)
 {
 	int count = 0;
 	char *s1, *nil = "(null)";
-
-	(void)flag;
-	(void)width;
-	(void)prec;
-	(void)len;
 
 
 	s1 = va_arg(ap, char *);
@@ -38,24 +28,15 @@ int print_s(va_list ap, buf_t *buf, unsigned char flag,
 /**
 *print_c - print char
 *@buf: pointer to struct
-*@flag: flag modifier
-*@width: width modifier
-*@prec: precision modifier
 *@ap: list of args
-*@len: length modifier
 *Return: int
 */
 
-int print_c(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len)
+int print_c(va_list ap, buf_t *buf)
 {
 	char s1;
-	unsigned int count = 0;
+	int count = 0;
 
-	(void)flag;
-	(void)width;
-	(void)prec;
-	(void)len;
 	s1 = va_arg(ap, int);
 	count += cpy_buf(buf, &s1, 1);
 	return (count);
@@ -64,24 +45,15 @@ int print_c(va_list ap, buf_t *buf, unsigned char flag,
 /**
 *print_perc - print char
 *@buf: pointer to struct
-*@flag: flag modifier
-*@width: width modifier
-*@prec: precision modifier
-*@len: lengh modifier
 *@ap: list of args
 *Return: int
 */
 
-int print_perc(va_list ap, buf_t *buf, unsigned char flag,
-	int width, int prec, unsigned char len)
+int print_perc(va_list ap, buf_t *buf)
 {
 	char s1 = '%';
-	unsigned int count = 0;
+	int count = 0;
 
-	(void)flag;
-	(void)width;
-	(void)prec;
-	(void)len;
 	(void)ap;
 
 	count += cpy_buf(buf, &s1, 1);
