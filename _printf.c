@@ -23,7 +23,7 @@ int run_handlers(const char *format, va_list args, buf_t *buf)
 	{
 		if (format[i] == '%')
 		{
-			f = frmt_specifier(format + i + 1);  
+			f = frmt_specifier(format + i + 1);
 			if  (f !=  NULL)
 			{
 				i++;
