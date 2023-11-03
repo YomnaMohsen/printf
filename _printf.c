@@ -17,16 +17,17 @@ int _printf(const char *format, ...);
 int run_handlers(const char *format, va_list args, buf_t *buf)
 {
 	int i, count = 0;
-/*	int (*f)(va_list, buf_t *);*/
+	int (*f)(va_list, buf_t *);
 
 	for (i = 0; format[i]; i++)
 	{
 		if (format[i] == '%')
 		{
-			if ((frmt_specifier(format + i + 1)) !=  NULL)
+			f = frmt_specifier(format + i + 1);  
+			if  (f !=  NULL)
 			{
 				i++;
-				count += frmt_specifier(format + i + 1)(args, buf);
+				count += f(args, buf);
 				continue;
 			}
 			else if (*(format + i + 1) == '\0')
