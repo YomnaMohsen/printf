@@ -60,4 +60,22 @@ int print_perc(va_list ap, buf_t *buf)
 
 	return (count);
 }
+/**
+*print_int - print int
+*@buf: pointer to struct
+*@ap: list of args
+*Return: int
+
+
+int print_int(va_list ap, buf_t *buf)
+{
+	char s1 = '%';
+	int count = 0;
+
+	(void)ap;
+
+	count += cpy_buf(buf, &s1, 1);
+
+	return (count);
+}*/
 
