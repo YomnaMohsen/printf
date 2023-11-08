@@ -13,8 +13,9 @@
 
 int print_int(va_list ap, buf_t *buf)
 {
-	 int pow_r = 1, digit, n;
-	 int count = 0;
+	 unsigned int pow_r = 1;
+	 unsigned int n, m;
+	 int count = 0, digit;
 	 char int_p = '-';
 
 	digit = va_arg(ap, int);
@@ -23,19 +24,21 @@ int print_int(va_list ap, buf_t *buf)
 	{
 		count += cpy_buf(buf, &int_p, 1);
 		digit = -digit;
+	/*	n = -n;*/
 	}
 	n = digit;
-	while (digit > 9)
+	m = n;
+	while (n > 9)
 	{
-		digit = digit / 10;
+		n = n / 10;
 		pow_r *= 10;
 	}
 	while (pow_r > 0)
 	{
-		digit = n / pow_r;
-		int_p = (digit % 10 + '0');
+		n = m / pow_r;
+		int_p = (n % 10 + '0');
 		count += cpy_buf(buf, &int_p, 1);
-		n -= digit * pow_r;
+		m -= n * pow_r;
 		pow_r /= 10;
 	}
 	return (count);
