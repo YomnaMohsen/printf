@@ -21,6 +21,7 @@ int (*frmt_specifier(const char *spec))(va_list, buf_t *)
 		{'%', print_perc},
 		{'d', print_int},
 		{'i', print_int},
+		{'b', convert_b},
 		{0, NULL}
 	};
 	for (j = 0; spec_arr[j].f; j++)
