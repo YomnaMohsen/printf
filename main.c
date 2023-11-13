@@ -11,10 +11,10 @@
 int main(void)
 {
 	int len, len2;
-	long res = INT_MAX;
+/*	long res = INT_MAX;*/
 
-	len = _printf("%u + %u = %u\n", INT_MAX, INT_MAX, res);
-	len2 = printf("%u + %u = %u\n", INT_MAX, INT_MAX, res);
+	len = _printf("%x", 1024);
+	len2 = printf("%x", 1024);
 	fflush(stdout);
 	if (len != len2)
 	{

@@ -24,6 +24,8 @@ int (*frmt_specifier(const char *spec))(va_list, buf_t *)
 		{'b', convert_b},
 		{'u', convert_u},
 		{'o', convert_o},
+		{'x', convert_h},
+		{'X', convert_H},
 		{0, NULL}
 	};
 	for (j = 0; spec_arr[j].f; j++)
