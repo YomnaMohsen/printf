@@ -41,17 +41,8 @@ int convert_ub(unsigned int n, buf_t *buf)
 	else
 	{
 		count += convert_ub(n / 2, buf);
-		if (n % 2)
-		{
-			digit = 1 + '0';
-			count += cpy_buf(buf, &digit , 1);
-		}
-		else
-		{
-			digit = 0 + '0';
-			count += cpy_buf(buf, &digit, 1);
-
-		}
+		digit = (n % 2) + '0';
+		count += cpy_buf(buf, &digit , 1);
 	}
 	return (count);
 }
