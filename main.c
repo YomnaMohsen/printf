@@ -13,8 +13,8 @@ int main(void)
 	int len, len2;
 /*	long res = INT_MAX;*/
 
-	len = _printf("%r", "\nThis sentence is retrieved from va_args!");
-	len2 = printf("!sgra_av morf deveirter si ecnetnes sihT\n");
+	len = _printf("Complete the sentence: You %r nothing, Jon Snow.\n", "know");
+	len2 = printf("Complete the sentence: You wonk nothing, Jon Snow.\n");
 	fflush(stdout);
 	if (len != len2)
 	{

@@ -58,8 +58,8 @@ int get_rot(va_list ap, buf_t *buf)
 
 int  rev_string(va_list ap, buf_t *buf)
 {
-	int count = 0, len = 0, j, i = 0;
-	char *s, *r, tmp;
+	int count = 0, len = 0, i = 0;
+	char *s;
 
 	s = va_arg(ap, char *);
 	while (s[i] != '\0')
@@ -67,20 +67,12 @@ int  rev_string(va_list ap, buf_t *buf)
 		len++;
 		i++;
 	}
-	i = 0;
-	j = len;
 	len--;
-	r = malloc (sizeof(char) * len);
-	while (len >  i)
+	while (len >= 0)
 	{
-		tmp = s[len];
-		r[len] = s[i];
-		r[i] = tmp;
+		count += cpy_buf(buf, &s[len], 1);
 		len--;
-		i++;
 	}
-	count += cpy_buf(buf, r, j);
-	free(r);
 	return (count);
 }
 
