@@ -48,6 +48,8 @@ int convert_uh(unsigned int n, unsigned int base, int flag, buf_t *buf);
 void printbuff_free(buf_t *buf, va_list args);
 int run_handlers(const char *format, va_list arg, buf_t *buf);
 int cpy_buf(buf_t *buf, const char *s, int n);
+int get_rot(va_list ap, buf_t *buf);
+int rot13(char *a, buf_t *buf);
 
 /*handling specifier function*/
 int (*frmt_specifier(const char *s))(va_list, buf_t *);
