@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  *rot13 - encode string
@@ -21,13 +22,14 @@ int rot13(char *a, buf_t *buf)
 		{
 			if (a[i] == alpha[j])
 			{
-				a[i] = alpha1[j];
+				count += cpy_buf(buf, &alpha1[j],1) ;
 				break;
 			}
 		}
+		if(a[i] != alpha[j])
+			count += cpy_buf(buf, &a[i],1) ;
 		i++;
 	}
-	count = cpy_buf(buf, a, i);
 	return (count);
 }
 /**
@@ -39,7 +41,7 @@ int rot13(char *a, buf_t *buf)
 
 int get_rot(va_list ap, buf_t *buf)
 {
-	int count;
+	int count = 0;
 	char *s;
 
 	s = va_arg(ap, char *);
