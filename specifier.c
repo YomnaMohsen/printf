@@ -26,7 +26,7 @@ int (*frmt_specifier(const char *spec))(va_list, buf_t *)
 		{'o', convert_o},
 		{'x', convert_h},
 		{'X', convert_H},
-		{'R', get_rot},
+		{'R', get_rot13},
 		{'r', rev_string},
 		{0, NULL}
 	};
