@@ -13,9 +13,8 @@ int main(void)
 	int len, len2;
 /*	long res = INT_MAX;*/
 
-	len = _printf("%R", "Guvf fragrapr vf ergevrirq sebz in_netf!\n");
-	len2 = printf("This sentence is retrieved from va_args!\n");
-	/*_printf("%s", "Guvf fragrapr vf ergevrirq sebz in_netf!\n");*/
+	len = _printf("%r", "\nThis sentence is retrieved from va_args!");
+	len2 = printf("!sgra_av morf deveirter si ecnetnes sihT\n");
 	fflush(stdout);
 	if (len != len2)
 	{

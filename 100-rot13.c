@@ -48,3 +48,39 @@ int get_rot(va_list ap, buf_t *buf)
 	count = rot13(s, buf);
 	return (count);
 }
+
+/**
+ * rev_string - reverse array of charcters (string)
+ * @ap: laist of args
+ * @buf: pointer to struct
+ * Return: int
+ */
+
+int  rev_string(va_list ap, buf_t *buf)
+{
+	int count = 0, len = 0, j, i = 0;
+	char *s, *r, tmp;
+
+	s = va_arg(ap, char *);
+	while (s[i] != '\0')
+	{
+		len++;
+		i++;
+	}
+	i = 0;
+	j = len;
+	len--;
+	r = malloc (sizeof(char) * len);
+	while (len >  i)
+	{
+		tmp = s[len];
+		r[len] = s[i];
+		r[i] = tmp;
+		len--;
+		i++;
+	}
+	count += cpy_buf(buf, r, j);
+	free(r);
+	return (count);
+}
+
