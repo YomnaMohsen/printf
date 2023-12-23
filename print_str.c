@@ -88,7 +88,7 @@ int print_S(va_list ap, buf_t *buf)
 		{
 			count += cpy_buf(buf, &hex[0], 1);
 			count += cpy_buf(buf, &hex[1], 1);
-			if (*s1 >= 10 && *s1 <= 15)
+			if (*s1 < 16)
 			{
 				count += cpy_buf(buf, &hex[2], 1);
 			}
