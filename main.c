@@ -13,7 +13,7 @@ int main(void)
 	int len, len2;
 /*	long res = INT_MAX;*/
 
-	len = _printf("Complete the sentence: You %r nothing, Jon Snow.\n", "know");
+	len = _printf("%S\n", "Could you print some non-prntable characters?\n%S\nThanks!\n", "Sure:\x1F\x7F\n");
 	len2 = printf("Complete the sentence: You wonk nothing, Jon Snow.\n");
 	fflush(stdout);
 	if (len != len2)

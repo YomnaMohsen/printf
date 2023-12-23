@@ -28,6 +28,7 @@ int (*frmt_specifier(const char *spec))(va_list, buf_t *)
 		{'X', convert_H},
 		{'R', get_rot13},
 		{'r', rev_string},
+		{'S', print_S},
 		{0, NULL}
 	};
 	for (j = 0; spec_arr[j].f; j++)
